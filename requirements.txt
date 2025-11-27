@@ -1,0 +1,4 @@
+transformers>=4.57
+qwen_vl_utils>=0.0.14
+ms-swift>=3.9.1
+vllm>=0.11.0
