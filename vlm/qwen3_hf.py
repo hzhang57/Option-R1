@@ -12,20 +12,23 @@ from transformers import AutoProcessor, Qwen3VLForConditionalGeneration
 class Qwen3HF:
     def __init__(
         self,
-        model_id: str = "Qwen/Qwen3-VL-4B-Instruct",
-        device: str = "auto",
+        model_id: str = "Qwen/Qwen3-VL-2B-Instruct",
+        device: str = "cuda",
         max_frames: int = 16,
         max_pixels: int = 128 * 32 * 32,
         image_patch_size: int = 16,
     ):
-        target_device = "cuda" if device == "auto" and torch.cuda.is_available() else device
-        device_map = "auto" if device == "auto" else device
+        if not torch.cuda.is_available():
+            raise RuntimeError("CUDA is required; CPU inference is not supported in this wrapper.")
+        self.device = "cuda"
+        device_map = "auto" if device == "auto" else self.device
 
         self.model = Qwen3VLForConditionalGeneration.from_pretrained(
             model_id,
             dtype="auto",
             device_map=device_map,
             trust_remote_code=True,
+            attn_implementation="flash_attention_2",
         )
         self.processor = AutoProcessor.from_pretrained(model_id, trust_remote_code=True)
 
@@ -38,7 +41,6 @@ class Qwen3HF:
                 cfg.top_k = None
             self.model.generation_config = cfg
 
-        self.device = target_device
         self.max_frames = max_frames
         self.max_pixels = max_pixels
         self.image_patch_size = image_patch_size

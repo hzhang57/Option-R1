@@ -1,4 +1,14 @@
-transformers>=4.57
+ms-swift==3.10.2
+transformers>=4.57.3
 qwen_vl_utils>=0.0.14
-ms-swift>=3.9.1
-vllm>=0.11.0
+trl[vllm]
+math_verify
+wandb
+packaging
+ninja
+deepspeed
+vllm==0.10.2
+msgspec
+torchvision
+decord
+flash-attn
