@@ -1,3 +1,5 @@
+
+#    --model Qwen/Qwen2.5-VL-3B-Instruct \
 WANDB_API_KEY=e15fbbc857d13f6f81dc158724b3bbf8f7dbce2e \
 CUDA_VISIBLE_DEVICES=3,4 \
 NPROC_PER_NODE=2 \
@@ -5,7 +7,7 @@ MAX_PIXELS=262144 \
 MASTER_PORT=29600 \
 swift rlhf \
     --rlhf_type grpo \
-    --model Qwen/Qwen2.5-VL-3B-Instruct \
+    --model Qwen/Qwen3-VL-4B-Instruct \
     --external_plugins examples/train/grpo/plugin/plugin.py \
     --reward_funcs external_r1v_acc format \
     --use_vllm true \
