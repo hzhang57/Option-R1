@@ -6,7 +6,8 @@ Placeholder for additional setup or usage notes. Add project-specific instructio
 
 ```bash
 pip install "ms-swift==3.10.2"
-pip install "transformers==4.57.1" "qwen_vl_utils>=0.0.14"
+pip install "transformers==4.57.1" 
+pip install "qwen_vl_utils>=0.0.14"
 pip install "trl[vllm]"
 pip install math_verify
 pip install wandb
