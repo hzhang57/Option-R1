@@ -40,6 +40,7 @@ swift rlhf \
     --deepspeed zero3 \
     --log_completions true \
     --report_to wandb \
+    --wandb_name Qwen3-VL-4B-Instruct-Open-R1 \
     --num_iterations 2 \
     --async_generate false \
     --beta 0.001 \
